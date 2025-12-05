@@ -1,15 +1,22 @@
 // import { put } from "@vercel/blob";
-// import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-// export async function POST(request: Request) {
-//   try {
-//     const formData = await request.formData();
-//     const file = formData.get("file") as File;
+export async function POST(request: Request) {
+  try {
+    const formData = await request.formData();
+    const file = formData.get("file") as File;
 
-//     if (!file) {
-//       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
-//     }
-
+    if (!file) {
+      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+    }
+  } catch (error) {
+    console.error("Upload error:", error);
+    return NextResponse.json(
+      { error: "Failed to upload image" },
+      { status: 500 }
+    );
+  }
+}
 //     // Validate file type
 //     const validTypes = [
 //       "image/jpeg",
