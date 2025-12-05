@@ -19,7 +19,7 @@ import { Switch } from "@/components/ui/switch";
 
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react";
-import { ImageUpload } from "@/components/ui/image-upload";
+import { ImageUpload } from "@/components/image-upload";
 import slugify from "slugify";
 import { upsertBlog } from "../../server/actions";
 import { useRouter } from "next/navigation";
