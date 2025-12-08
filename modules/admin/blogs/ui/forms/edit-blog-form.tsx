@@ -24,6 +24,7 @@ import { getBlogById, upsertBlog } from "../../server/actions";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Link from "next/link";
+import Image from "next/image";
 
 const RichTextEditorWrapper = dynamic(() => import("../components/rich-text"), {
   ssr: false,
@@ -70,6 +71,7 @@ export const EditBlogForm = ({ id }: { id: string }) => {
             slug: result.data.slug,
             content: result.data.content,
             category: result.data.category,
+            image: result.data.image,
             tags: result.data.tags,
             featured: result.data.featured,
             author: result.data.author,
@@ -167,20 +169,26 @@ export const EditBlogForm = ({ id }: { id: string }) => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="image"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Image</FormLabel>
-                  <FormControl>
-                    <Input placeholder="image URL" type="text" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Image</FormLabel>
+                <FormControl>
+                  <Image
+                    src={field.value}
+                    alt="Image"
+                    width={500}
+                    height={500}
+                    className="h-[200px] w-[200px] object-cover"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
