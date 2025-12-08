@@ -22,6 +22,7 @@ import { Loader2 } from "lucide-react";
 import { getBlogById } from "../../server/actions";
 import Link from "next/link";
 import { toast } from "sonner";
+import Image from "next/image";
 
 const RichTextEditorWrapper = dynamic(() => import("../components/rich-text"), {
   ssr: false,
@@ -130,20 +131,26 @@ export const ViewBlogForm = ({ id }: { id: string }) => {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="image"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Image</FormLabel>
-                  <FormControl>
-                    <Input {...field} readOnly className="bg-gray-50" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
           </div>
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Image</FormLabel>
+                <FormControl>
+                  <Image
+                    src={field.value}
+                    alt="Image"
+                    width={500}
+                    height={500}
+                    className="h-[200px] w-[200px] object-cover"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <FormField
             control={form.control}
