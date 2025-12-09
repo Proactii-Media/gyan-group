@@ -46,7 +46,7 @@ export const productsTable = pgTable(
     id: text("id")
       .primaryKey()
       .$defaultFn(() => nanoid()),
-    slug: text("slug").notNull().unique(),
+    slug: text("slug").notNull(),
     title: text("title").notNull(),
     image: text("image").notNull(),
     categoryId: text("category_id")
